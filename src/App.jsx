@@ -2,97 +2,149 @@ import { useReducer, useState } from "react";
 import "./App.css";
 
 function App() {
-  const reducer = (state, action) => {
-    const { type, payload } = action;
-    switch (type) {
-      case "number":
-    }
-  };
-  const [state, dispatch] = useReducer(reducer, {
-    firstValue: 0,
-    secondValue: 0,
-    result: 0,
-    sign: null,
-  });
+  const [value, setValue] = useState("");
+
   return (
-    <section className="h-screen flex flex-col justify-center items-center font-bold">
-      <div className="bg-gray-400 w-[30%] ">
-        <div className="p-3 text-2xl text-white text-right">
-          <span>{state.result}</span>
+    <section className="bg-gray-100 h-screen flex justify-center items-center">
+      <form className="bg-black px-3 py-8 rounded-2xl ">
+        <div>
+          <input
+            type="text"
+            value={value}
+            className="text-white text-right  text-3xl font-semibold outline-none"
+          />
         </div>
-        <div className="bg-gray-300 grid grid-cols-1">
-          <div className="flex justify-between items-center text-center ">
-            <p className="w-full cursor-pointer bg-white border border-gray-300 py-3">
-              AC
-            </p>
-            <p className="w-full cursor-pointer bg-white py-3 border border-gray-300">
-              +/-
-            </p>
-            <p className="w-full cursor-pointer bg-white py-3 border border-gray-300">
-              %
-            </p>
-            <p className="w-full cursor-pointer bg-orange-400 border border-gray-300 py-3 text-white">
-              ÷
-            </p>
-          </div>
-          <div className="flex justify-between items-center text-center">
-            <p
-              className="w-full cursor-pointer bg-white py-3 border border-gray-300"
-              onClick={() => dispatch({ type: "number", payload: 7 })}
-            >
-              7
-            </p>
-            <p className="w-full cursor-pointer bg-white py-3 border border-gray-300">
-              8
-            </p>
-            <p className="w-full cursor-pointer bg-white py-3 border border-gray-300">
-              9
-            </p>
-            <p className="w-full cursor-pointer bg-orange-400 border border-gray-300 py-3 text-white">
-              x
-            </p>
-          </div>
-          <div className="flex justify-between items-center text-center">
-            <p className="w-full cursor-pointer bg-white py-3 border border-gray-300">
-              4
-            </p>
-            <p className="w-full cursor-pointer bg-white py-3 border border-gray-300">
-              5
-            </p>
-            <p className="w-full cursor-pointer bg-white py-3 border border-gray-300">
-              6
-            </p>
-            <p className="w-full cursor-pointer bg-orange-400 border border-gray-300 py-3 text-white">
-              -
-            </p>
-          </div>
-          <div className="flex justify-between items-center text-center">
-            <p className="w-full cursor-pointer bg-white py-3 border border-gray-300">
-              1
-            </p>
-            <p className="w-full cursor-pointer bg-white py-3 border border-gray-300">
-              2
-            </p>
-            <p className="w-full cursor-pointer bg-white py-3 border border-gray-300">
-              3
-            </p>
-            <p className="w-full cursor-pointer bg-orange-400 border border-gray-300 py-3 text-white">
-              +
-            </p>
-          </div>
-          <div className="grid grid-cols-4 items-center text-center">
-            <p className="w-full cursor-pointer bg-white py-3 border border-gray-300 col-span-2">
-              0
-            </p>
-            <p className="w-full cursor-pointer bg-white py-3 border border-gray-300">
-              .
-            </p>
-            <p className="w-full cursor-pointer bg-orange-400 border border-gray-300 py-3 text-white">
-              +
-            </p>
-          </div>
+        <div className="flex justify-between items-center gap-2 mt-7">
+          <input
+            onClick={() => setValue(value.slice(0, -1))}
+            type="button"
+            value={"DE"}
+            className="bg-gray-500 font-semibold text-3xl text-white w-full text-center cursor-pointer h-15 rounded-full"
+          />
+          <input
+            onClick={() => setValue("")}
+            type="button"
+            value={"AC"}
+            className="bg-gray-500 font-semibold text-3xl text-white  text-center cursor-pointer w-full h-15 rounded-full"
+          />
+          <input
+            onClick={(e) => setValue(value + e.target.value)}
+            type="button"
+            value={"%"}
+            className="bg-gray-500 font-semibold text-3xl text-white  text-center cursor-pointer w-full h-15 rounded-full"
+          />
+          <input
+            onClick={(e) => setValue(value + e.target.value)}
+            type="button"
+            value={"/"}
+            className="bg-orange-500 font-semibold text-3xl text-white  text-center cursor-pointer w-full h-15 rounded-full"
+          />
         </div>
-      </div>
+        <div className="flex justify-between items-center gap-2 mt-2">
+          <input
+            onClick={(e) => setValue(value + e.target.value)}
+            type="button"
+            value={"7"}
+            className="bg-gray-800 font-semibold text-3xl text-white w-full text-center cursor-pointer h-15 rounded-full"
+          />
+          <input
+            onClick={(e) => setValue(value + e.target.value)}
+            type="button"
+            value={"8"}
+            className="bg-gray-800 font-semibold text-3xl text-white  text-center cursor-pointer w-full h-15 rounded-full"
+          />
+          <input
+            type="button"
+            onClick={(e) => setValue(value + e.target.value)}
+            value={"9"}
+            className="bg-gray-800 font-semibold text-3xl text-white  text-center cursor-pointer w-full h-15 rounded-full"
+          />
+          <input
+            onClick={(e) => setValue(value + e.target.value)}
+            type="button"
+            value={"x"}
+            className="bg-orange-500 font-semibold text-3xl text-white  text-center cursor-pointer w-full h-15 rounded-full"
+          />
+        </div>
+        <div className="flex justify-between items-center gap-2 mt-2">
+          <input
+            onClick={(e) => setValue(value + e.target.value)}
+            type="button"
+            value={"4"}
+            className="bg-gray-800 font-semibold text-3xl text-white w-full text-center cursor-pointer h-15 rounded-full"
+          />
+          <input
+            onClick={(e) => setValue(value + e.target.value)}
+            type="button"
+            value={"5"}
+            className="bg-gray-800 font-semibold text-3xl text-white  text-center cursor-pointer w-full h-15 rounded-full"
+          />
+          <input
+            onClick={(e) => setValue(value + e.target.value)}
+            type="button"
+            value={"6"}
+            className="bg-gray-800 font-semibold text-3xl text-white  text-center cursor-pointer w-full h-15 rounded-full"
+          />
+          <input
+            onClick={(e) => setValue(value + e.target.value)}
+            type="button"
+            value={"-"}
+            className="bg-orange-500 font-semibold text-3xl text-white  text-center cursor-pointer w-full h-15 rounded-full"
+          />
+        </div>
+        <div className="flex justify-between items-center gap-2 mt-2">
+          <input
+            onClick={(e) => setValue(value + e.target.value)}
+            type="button"
+            value={"1"}
+            className="bg-gray-800 font-semibold text-3xl text-white w-full text-center cursor-pointer h-15 rounded-full"
+          />
+          <input
+            onClick={(e) => setValue(value + e.target.value)}
+            type="button"
+            value={"2"}
+            className="bg-gray-800 font-semibold text-3xl text-white  text-center cursor-pointer w-full h-15 rounded-full"
+          />
+          <input
+            onClick={(e) => setValue(value + e.target.value)}
+            type="button"
+            value={"3"}
+            className="bg-gray-800 font-semibold text-3xl text-white  text-center cursor-pointer w-full h-15 rounded-full"
+          />
+          <input
+            onClick={(e) => setValue(value + e.target.value)}
+            type="button"
+            value={"+"}
+            className="bg-orange-500 font-semibold text-3xl text-white  text-center cursor-pointer w-full h-15 rounded-full"
+          />
+        </div>
+        <div className="flex justify-between items-center gap-2 mt-2">
+          <input
+            onClick={(e) => setValue(value + e.target.value)}
+            type="button"
+            value={"00"}
+            className="bg-gray-800 font-semibold text-3xl text-white w-full text-center cursor-pointer h-15 rounded-full"
+          />
+          <input
+            onClick={(e) => setValue(value + e.target.value)}
+            type="button"
+            value={"0"}
+            className="bg-gray-800 font-semibold text-3xl text-white  text-center cursor-pointer w-full h-15 rounded-full"
+          />
+          <input
+            onClick={(e) => setValue(value + e.target.value)}
+            type="button"
+            value={"."}
+            className="bg-gray-800 font-semibold text-3xl text-white  text-center cursor-pointer w-full h-15 rounded-full"
+          />
+          <input
+            onClick={(e) => setValue(eval(value))}
+            type="button"
+            value={"="}
+            className="bg-orange-500 font-semibold text-3xl text-white  text-center cursor-pointer w-full h-15 rounded-full"
+          />
+        </div>
+      </form>
     </section>
   );
 }
